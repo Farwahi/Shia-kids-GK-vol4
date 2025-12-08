@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title> Shia Kids G.K vol 1 Quiz</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,sans-serif;
+  /* Background image + gradient overlay */
+  background-image:
+    linear-gradient(135deg,rgba(99,102,241,0.9),rgba(236,72,153,0.8)),
+    url('Background.png');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  min-height:100vh;
+  padding:20px;
+}
+
+/* MAIN CONTAINER (glass card) */
+#a{
+  max-width:900px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.96);
+  border-radius:24px;
+  box-shadow:0 24px 70px rgba(15,23,42,0.35);
+  padding:32px 28px 28px;
+  border-top:6px solid #6366f1; /* top accent */
+  backdrop-filter:blur(12px);
+}
+
+/* HEADER + LOGO */
+.h{text-align:center;margin-bottom:26px;}
+
+.logo{
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.logo-img{
+  height:70px;
+  width:auto;
+  margin-left:5px;
+  display:block;
+  border-radius:18px;
+  box-shadow:0 8px 18px rgba(148,163,184,0.7);
+  background:#fff;
+}
+
+.h h1{
+  color:#111827;
+  font-size:30px;
+  margin-top:4px;
+}
+
+.h .designer{
+  font-size:14px;
+  color:#6b7280;
+  font-style:italic;
+  margin-top:4px;
+}
+
+.ci{
+  font-size:14px;
+  color:#4b5563;
+  margin-top:4px;
+}
+
+/* QUESTION AREA */
+.pi{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+  gap:8px;
+  font-size:14px;
+  color:#4b5563;
+}
+.pi-left{display:flex;flex-direction:column;gap:4px;}
+.pi-right{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
+
+.qt{
+  background:#e0e7ff;
+  color:#4338ca;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+}
+.qt.flagged{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.pb{
+  width:100%;
+  height:8px;
+  background:#e5e7eb;
+  border-radius:999px;
+  margin-bottom:24px;
+  overflow:hidden;
+}
+.pf{
+  height:100%;
+  background:linear-gradient(90deg,#6366f1,#ec4899);
+  transition:width .3s;
+}
+.q{
+  font-size:26px;
+  font-weight:700;
+  color:#111827;
+  margin-bottom:18px;
+}
+
+.os{margin-bottom:18px;}
+
+.o{
+  background:#f9fafb;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:10px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:all .18s ease;
+}
+.o:hover:not(.l){
+  border-color:#a855f7;
+  box-shadow:0 4px 10px rgba(148,163,184,0.45);
+}
+.o:active:not(.l){
+  border-color:#3b82f6;
+  background:#eff6ff;
+}
+.o span:first-child{
+  color:#111827;
+  font-size:20px;
+}
+.o.s{
+  background:#e0f2fe;
+  border-color:#3b82f6;
+}
+.o.co{
+  background:#dcfce7;
+  border-color:#16a34a;
+}
+.o.w{
+  background:#fee2e2;
+  border-color:#ef4444;
+}
+.o.l{
+  cursor:not-allowed;
+}
+
+/* FEEDBACK */
+.fb{
+  padding:14px 16px;
+  border-radius:14px;
+  margin-bottom:12px;
+  font-weight:600;
+  font-size:15px;
+}
+.fb.co{
+  background:#dcfce7;
+  border:2px solid #16a34a;
+  color:#065f46;
+}
+.fb.ic{
+  background:#fee2e2;
+  border:2px solid #ef4444;
+  color:#991b1b;
+}
+
+/* BUTTONS */
+button{
+  width:100%;
+  padding:13px 16px;
+  border:none;
+  border-radius:999px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+button:disabled{
+  background:#d1d5db;
+  color:#9ca3af;
+  cursor:not-allowed;
+  box-shadow:none;
+  transform:none;
+}
+button:not(:disabled):hover{
+  box-shadow:0 8px 16px rgba(148,163,184,0.7);
+  transform:translateY(-1px);
+}
+button:not(:disabled):active{
+  transform:translateY(0);
+  box-shadow:0 4px 10px rgba(148,163,184,0.6);
+}
+
+.sb{
+  background:linear-gradient(135deg,#6366f1,#ec4899);
+  color:#fff;
+}
+.nb{
+  background:linear-gradient(135deg,#22c55e,#14b8a6);
+  color:#fff;
+}
+.skb{
+  background:linear-gradient(135deg,#f97316,#facc15);
+  color:#fff;
+  margin-top:10px;
+}
+.fgb{
+  background:linear-gradient(135deg,#ef4444,#f97316);
+  color:#fff;
+  margin-top:10px;
+}
+
+/* EXTRA LAYOUT UNDER QUESTION BUTTONS */
+.btn-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* RESULTS */
+.r{text-align:center;}
+.sc{
+  font-size:64px;
+  font-weight:800;
+  margin:26px 0 10px;
+}
+.sc.e{color:#16a34a;}
+.sc.g{color:#f97316;}
+.sc.p{color:#ef4444;}
+.r p{color:#4b5563;margin-top:4px;}
+
+/* START SCREEN */
+.start-screen{text-align:center;padding:10px 10px 0;}
+.start-screen h1{font-size:30px;color:#111827;margin-bottom:6px;}
+.start-screen p{font-size:15px;color:#4b5563;margin-bottom:16px;}
+.start-info{
+  background:#f9fafb;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+  text-align:left;
+  border:1px solid #e5e7eb;
+}
+.start-info h3{
+  color:#111827;
+  margin-bottom:8px;
+  font-size:15px;
+}
+.start-info ul{
+  margin-left:18px;
+  color:#4b5563;
+  font-size:14px;
+}
+.start-info li{margin-bottom:4px;}
+
+/* REGISTRATION */
+.reg-screen{text-align:center;padding:10px 10px 0;}
+.reg-screen h1{font-size:30px;color:#111827;margin-bottom:6px;}
+.reg-screen p{font-size:15px;color:#4b5563;margin-bottom:12px;}
+
+.reg-form{
+  max-width:420px;
+  margin:0 auto;
+  text-align:left;
+  background:#f9fafb;
+  border-radius:18px;
+  padding:20px 18px 18px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 12px 30px rgba(148,163,184,0.55);
+}
+.reg-field{margin-bottom:14px;}
+.reg-field label{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  color:#374151;
+  margin-bottom:4px;
+}
+.reg-field input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  font-size:14px;
+  background:#fff;
+}
+.reg-field input:focus{
+  outline:none;
+  border-color:#6366f1;
+  box-shadow:0 0 0 1px rgba(99,102,241,0.3);
+}
+.reg-error{
+  color:#b91c1c;
+  font-size:13px;
+  margin-bottom:10px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+<div id="a"></div>
+
+<script>
+var cq=0, ua={}, lq={}, sr=0, APP=document.getElementById('a');
+var stName="", stDob="";
+var fq = {}; // flagged questions
+
+/* TIMERS */
+var totalTime = 600;      // 1 hour in seconds
+var totalInterval = null;
+var questionTime = 30;     // 60 seconds per question
+var qRemaining = questionTime;
+var qInterval = null;
+
+
+
+ /* QUESTION BANK – EDIT THIS PART ONLY */
+/* QUESTION BANK – EDIT THIS PART ONLY */
+var qs = [
+
+ {i:1, q:"اصولِ دین میں کون شامل ہے؟",
+  o:["نماز","روزہ","توحید","جہاد"],
+  c:[2], m:0},
+
+ {i:2, q:"فروعِ دین کی تعداد کتنی ہے؟",
+  o:["5","8","10","12"],
+  c:[2], m:0},
+
+ {i:3, q:"فروعِ دین میں کون شامل ہے؟",
+  o:["عدل","نبوت","امامت","نماز"],
+  c:[3], m:0},
+
+ {i:4, q:"تولّٰی کا مطلب کیا ہے؟",
+  o:["نیکی کا حکم دینا","کافروں سے دوستی","اولیاء اللہ سے محبت","نماز چھوڑ دینا"],
+  c:[2], m:0},
+
+ {i:5, q:"تبرّہ کا مطلب کیا ہے؟",
+  o:["نیکی کی دعوت دینا","برائی سے روکنا","دشمنانِ خدا سے بیزاری","روزہ رکھنا"],
+  c:[2], m:0},
+
+ {i:6, q:"حج کے لیے مسلمان کہاں جاتے ہیں؟",
+  o:["بیت المقدس","کربلا","دبئی","مکہ مکرمہ"],
+  c:[3], m:0},
+
+ {i:7, q:"حج زندگی میں کتنی بار فرض ہے؟",
+  o:["دو مرتبہ","کبھی نہیں","ایک مرتبہ اگر استطاعت ہو","پانچ مرتبہ"],
+  c:[2], m:0},
+
+ {i:8, q:"حج کس مہینے میں ادا کیا جاتا ہے؟",
+  o:["رجب","رمضان","ذوالقعدہ","ذوالحجہ"],
+  c:[3], m:0},
+
+ {i:9, q:"مسلمان پر زکوٰۃ کتنے فیصد واجب ہے؟",
+  o:["1.5%","2.5%","3.5%","4.5%"],
+  c:[1], m:0},
+
+ {i:10, q:"شیعہ پر سالانہ خمس کتنے فیصد ہے؟",
+  o:["10%","20%","30%","40%"],
+  c:[1], m:0},
+
+ {i:11, q:"روزہ کس مہینے میں رکھا جاتا ہے؟",
+  o:["رجب","شعبان","ذوالحجہ","رمضان"],
+  c:[3], m:0},
+
+ {i:12, q:"کیا روزے کی حالت میں پانی پینا جائز ہے؟",
+  o:["تھوڑا سا جائز ہے","صرف جوس جائز ہے","صرف کھجور جائز ہے","نہیں — کھانا پینا مکمل منع ہے"],
+  c:[3], m:0},
+
+ {i:13, q:"شہادت (کلمہ) کا مطلب کیا ہے؟",
+  o:["قرآن کی تلاوت","اللہ واحد ہے اور محمد ﷺ اس کے رسول ہیں","نماز کی نیت","روزے کا اعلان"],
+  c:[1], m:0},
+
+ {i:14, q:"مسلمان روزانہ کتنی فرض نمازیں ادا کرتے ہیں؟",
+  o:["3","4","5","6"],
+  c:[2], m:0},
+
+ {i:15, q:"نماز کے دوران مسلمان کس طرف رخ کرتے ہیں؟",
+  o:["بیت المقدس","کعبہ (مکہ)","بحرین","ابوظہبی"],
+  c:[1], m:0},
+
+ {i:16, q:"نماز کس کلمے سے شروع ہوتی ہے؟",
+  o:["بسم اللہ","الحمد للہ","سبحان اللہ","اللہ اکبر"],
+  c:[3], m:0},
+
+ {i:17, q:"اذان کس چیز کو کہتے ہیں؟",
+  o:["نماز","دعا","نماز کی پکار","امامت"],
+  c:[2], m:0},
+
+ {i:18, q:"مسجد میں خواتین کی نماز کے بارے میں کیا حکم ہے؟",
+  o:["اجازت نہیں","صرف سن سکتی ہیں","اجازت ہے اگر الگ جگہ ہو","مردوں کے ساتھ کھڑی ہوں گی"],
+  c:[2], m:0},
+
+ {i:19, q:"ہر رکعت میں کون سا سورہ پڑھا جاتا ہے؟",
+  o:["سورۃ اخلاص","سورۃ الناس","سورۃ الفاتحہ","سورۃ الاعلیٰ"],
+  c:[2], m:0},
+
+ {i:20, q:"نماز سے پہلے کیا ضروری ہے؟",
+  o:["ٹوپی","خوشبو","وضو","سادہ لباس"],
+  c:[2], m:0}
+
+];
+
+
+
+
+/* SHUFFLE QUESTIONS – random order each attempt */
+function shuffleQuestions(){
+  for (var i = qs.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = qs[i];
+    qs[i] = qs[j];
+    qs[j] = tmp;
+  }
+}
+
+/* LOGO HTML – uses image file */
+function logoHTML(){
+  return '<div class="logo">'+
+           '<img src="dg skills logo.png" class="logo-img" alt="DG Skills Logo">'+
+         '</div>';
+}
+
+/* FORMAT TIME mm:ss */
+function formatTime(sec){
+  var m = Math.floor(sec/60);
+  var s = sec % 60;
+  return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+/* UPDATE TIMER LABELS */
+function updateTimerLabels(){
+  var t = document.getElementById('totalTimer');
+  var q = document.getElementById('questionTimer');
+  if(t) t.textContent = formatTime(totalTime);
+  if(q) q.textContent = formatTime(qRemaining);
+}
+
+/* STOP ALL TIMERS */
+function stopTimers(){
+  if(totalInterval) clearInterval(totalInterval);
+  if(qInterval) clearInterval(qInterval);
+  totalInterval = null;
+  qInterval = null;
+}
+
+/* START TOTAL TEST TIMER (1 HOUR) */
+function startTotalTimer(){
+  if(totalInterval) clearInterval(totalInterval);
+  totalInterval = setInterval(function(){
+    if(totalTime > 0){
+      totalTime--;
+      updateTimerLabels();
+      if(totalTime <= 0){
+        totalTime = 0;
+        updateTimerLabels();
+        // Time up for whole test → show results
+        stopTimers();
+        rr();
+      }
+    }
+  },1000);
+}
+
+/* START QUESTION TIMER (60 sec per current question) */
+function startQuestionTimer(){
+  if(qInterval) clearInterval(qInterval);
+  qRemaining = questionTime;
+  updateTimerLabels();
+  qInterval = setInterval(function(){
+    if(qRemaining > 0){
+      qRemaining--;
+      updateTimerLabels();
+      if(qRemaining <= 0){
+        qRemaining = 0;
+        updateTimerLabels();
+        clearInterval(qInterval);
+        // lock this question if not already
+        var qId = qs[cq].i;
+        if(!lq[qId]) lq[qId] = 1;
+        // move to next or finish
+        if(cq < qs.length - 1){
+          cq++;
+          startQuestionTimer();
+          rq();
+        }else{
+          rr();
+        }
+      }
+    }
+  },1000);
+}
+
+/* CHECK IF ANSWER IS CORRECT */
+function ic(qid){
+  var q=null;
+  for(var i=0;i<qs.length;i++){
+    if(qs[i].i===qid){q=qs[i];break;}
+  }
+  if(!q) return 0;
+  var a=ua[qid]||[];
+  if(a.length!==q.c.length) return 0;
+  for(var j=0;j<q.c.length;j++){
+    if(a.indexOf(q.c[j])===-1) return 0;
+  }
+  return 1;
+}
+
+/* RENDER QUESTION */
+function rq(){
+  var q=qs[cq];
+  var il=lq[q.i];
+  var a=ua[q.i]||[];
+  var pg=((cq+1)/qs.length)*100;
+  var isFlagged = !!fq[q.i];
+
+  var h='';
+  h+='<div class="h">'+
+       logoHTML()+
+       '<h1>Shia Kids G.K vol 1 Quiz</h1>'+
+       '<div class="designer">Designed by Ume Farwa Syeda · DG Skills</div>'+
+       (stName?'<div class="ci">Candidate: <strong>'+stName+
+               '</strong> | DOB: <strong>'+stDob+'</strong></div>':'')+
+     '</div>';
+
+  h+='<div class="pi">'+
+       '<div class="pi-left">'+
+         '<span>Question '+(cq+1)+' of '+qs.length+'</span>'+
+         '<span style="font-size:12px;color:#6b7280;">Total time: <span id="totalTimer"></span> · Question time: <span id="questionTimer"></span></span>'+
+       '</div>'+
+       '<div class="pi-right">'+
+         '<span class="qt">'+(q.m?'Multiple':'Single')+' Select</span>'+
+         (isFlagged?'<span class="qt flagged">Flagged</span>':'')+
+       '</div>'+
+     '</div>';
+
+  h+='<div class="pb"><div class="pf" style="width:'+pg+'%"></div></div>';
+
+  h+='<div class="q">'+q.q+'</div><div class="os">';
+
+  for(var j=0;j<q.o.length;j++){
+    var sl=a.indexOf(j)!==-1;
+    var cr=q.c.indexOf(j)!==-1;
+    var cl='o';
+    if(il){
+      cl+=' l';
+      if(cr) cl+=' co';
+      else if(sl) cl+=' w';
+    }else if(sl){
+      cl+=' s';
+    }
+    h+='<div class="'+cl+'" '+(il?'':'onclick="so('+j+')"')+'>'+
+         '<span>'+q.o[j]+'</span>'+
+         (il && cr ? '<span>&#10003;</span>' :
+          il && sl ? '<span>&#10007;</span>' : '')+
+       '</div>';
+  }
+  h+='</div>';
+
+  if(il){
+    h+='<div class="fb '+(ic(q.i)?'co':'ic')+'">'+
+       (ic(q.i)?'&#10003; Correct!':'&#10007; Incorrect')+
+       '</div>'+
+       '<button class="nb" onclick="nq()">'+
+         (cq===qs.length-1?'View Results':'Next Question')+
+       '</button>';
+  }else{
+    h+='<button class="sb" onclick="sa()"'+(a.length===0?' disabled':'')+'>Submit Answer</button>'+
+       '<button class="skb" onclick="skq()">Skip Question</button>';
+  }
+
+  h+='<div class="btn-row">'+
+       '<button class="nb" onclick="prevQ()"'+(cq===0?' disabled':'')+'>Previous Question</button>'+
+       '<button class="fgb" onclick="toggleFlag()">'+(isFlagged?'Unflag Question':'Flag Question')+'</button>'+
+     '</div>';
+
+  APP.innerHTML=h;
+  updateTimerLabels(); // refresh labels for this question
+}
+
+/* HANDLE OPTION SELECT */
+function so(ix){
+  var q=qs[cq];
+  if(lq[q.i]) return;
+  var a=ua[q.i]||[];
+  if(q.m){
+    var f=a.indexOf(ix);
+    if(f!==-1) a.splice(f,1);
+    else a.push(ix);
+  }else{
+    a=[ix];
+  }
+  ua[q.i]=a;
+  rq();
+}
+
+/* SUBMIT ANSWER */
+function sa(){
+  lq[qs[cq].i]=1;
+  rq();
+}
+
+/* SKIP QUESTION */
+function skq(){
+  if(cq<qs.length-1){
+    cq++;
+    startQuestionTimer();
+    rq();
+  }else{
+    rr();
+  }
+}
+
+/* NEXT QUESTION */
+function nq(){
+  if(cq<qs.length-1){
+    cq++;
+    startQuestionTimer();
+    rq();
+  }else{
+    rr();
+  }
+}
+
+/* PREVIOUS QUESTION */
+function prevQ(){
+  if(cq>0){
+    cq--;
+    startQuestionTimer();
+    rq();
+  }
+}
+
+/* TOGGLE FLAG */
+function toggleFlag(){
+  var qId = qs[cq].i;
+  if(fq[qId]) delete fq[qId];
+  else fq[qId] = true;
+  rq();
+}
+
+/* SHOW RESULTS – WITH ATTEMPT HIGHLIGHT & timers stopped */
+function rr(){
+  stopTimers();
+
+  var ct=0;
+  for(var j=0;j<qs.length;j++){
+    if(ic(qs[j].i)) ct++;
+  }
+  var pt=Math.round((ct/qs.length)*100);
+
+  /* attempt tracking */
+  /* attempt tracking – reset after 3 attempts */
+var key = 'basicITQuiz_' + stName + '_' + stDob;
+var previousAttempts = parseInt(localStorage.getItem(key) || '0', 10);
+
+// If candidate has already done 3 or more attempts, reset counter
+if (previousAttempts >= 3) {
+    previousAttempts = 0;
+}
+
+var currentAttempt = previousAttempts + 1;
+localStorage.setItem(key, currentAttempt);
+
+
+  var subject=encodeURIComponent('Shia Kids G.K vol 1 Quiz Result - '+stName);
+  var body='Shia Kids G.K vol 1 Quiz Result%0D%0A%0D%0A'+
+           'Name: '+stName+'%0D%0A'+
+           'DOB: '+stDob+'%0D%0A'+
+           'Attempt: '+currentAttempt+'%0D%0A'+
+           'Score: '+pt+'%25 ('+ct+' out of '+qs.length+' correct)%0D%0A%0D%0A'+
+           'DG Skills Auto Summary.';
+  var mailLink='mailto:dgskills4u@gmail.com?subject='+subject+'&body='+body;
+
+  var h='';
+  h+='<div class="h">'+
+       logoHTML()+
+       '<h1>Shia Kids G.K vol 1 Quiz</h1>'+
+       '<div class="ci">Candidate: <strong>'+stName+'</strong> | DOB: <strong>'+stDob+'</strong></div>'+
+     '</div>';
+
+  h+='<div class="r">'+
+       '<h2>Quiz Complete!</h2>'+
+       '<div class="sc '+(pt>=70?'e':pt>=50?'g':'p')+'">'+pt+'%</div>'+
+       '<p>You scored '+ct+' out of '+qs.length+' questions.</p>';
+
+  if(currentAttempt > 1){
+    h+='<p style="margin-top:8px;color:#b91c1c;font-weight:700;">'+
+        'Note: This is your '+currentAttempt+' attempt for this quiz.'+
+       '</p>';
+  }
+
+  h+='<div style="margin-top:25px; display:flex; flex-direction:column; gap:10px;">'+
+         '<a href="'+mailLink+'"><button class="sb">Email Result to DG Skills</button></a>'+
+         '<button class="skb" onclick="goToRegistration()">End & Restart</button>'+
+       '</div>'+
+     '</div>';
+
+  APP.innerHTML=h;
+}
+
+/* GO BACK TO REGISTRATION */
+function goToRegistration(){
+  stopTimers();
+  cq = 0;
+  ua = {};
+  lq = {};
+  fq = {};
+  sr = 0;
+  stName = "";
+  stDob = "";
+  totalTime = 600;
+  showRegister();
+}
+
+/* REGISTRATION SCREEN */
+function showRegister(){
+  stopTimers();
+  var h='';
+  h+='<div class="reg-screen">'+
+       logoHTML()+
+       '<h1>Shia Kids G.K vol 1 Quiz</h1>'+
+       '<p>Please register your details before starting the quiz.</p>'+
+       '<div class="reg-form">'+
+         '<div class="reg-error" id="regError">Please enter your name and date of birth.</div>'+
+         '<div class="reg-field">'+
+           '<label for="regName">Full Name</label>'+
+           '<input type="text" id="regName" placeholder="Enter your full name">'+
+         '</div>'+
+         '<div class="reg-field">'+
+           '<label for="regDob">Date of Birth</label>'+
+           '<input type="date" id="regDob">'+
+         '</div>'+
+         '<button class="sb" onclick="handleRegister()">Register & Continue</button>'+
+       '</div>'+
+     '</div>';
+  APP.innerHTML=h;
+}
+
+/* HANDLE REGISTRATION */
+function handleRegister(){
+  var n=document.getElementById('regName').value.trim();
+  var d=document.getElementById('regDob').value.trim();
+  var err=document.getElementById('regError');
+  if(!n || !d){
+    err.style.display='block';
+    return;
+  }
+  stName=n;
+  stDob=d;
+  showStart();
+}
+
+/* START SCREEN */
+function showStart(){
+  stopTimers();
+  totalTime = 600;
+  var h='';
+  h+='<div class="start-screen">'+
+       logoHTML()+
+       '<h1>Shia Kids G.K vol 1 Quiz</h1>'+
+       '<p>Welcome, <strong>'+stName+'</strong> (DOB: '+stDob+').</p>'+
+       '<div class="start-info">'+
+         '<h3>Quiz Information:</h3>'+
+         '<ul>'+
+           '<li>Total test time: 1 hour</li>'+
+           '<li>Each question time: 60 seconds</li>'+
+           '<li>20 questions on Shia Kids G.K vol 1 Quiz </li>'+
+           '<li>Questions appear in random order each attempt</li>'+
+           '<li>Use Previous, Skip and Flag to manage your time</li>'+
+           '<li>Final score can be emailed directly to DG Skills</li>'+
+         '</ul>'+
+       '</div>'+
+       '<button class="sb" onclick="startQuiz()">Start Quiz</button>'+
+     '</div>';
+  APP.innerHTML=h;
+}
+
+/* START QUIZ */
+function startQuiz(){
+  shuffleQuestions();      // randomise order each attempt
+  cq=0;
+  ua = {};
+  lq = {};
+  fq = {};
+  sr = 0;
+  totalTime = 600;
+  startTotalTimer();
+  startQuestionTimer();
+  rq();
+}
+
+/* ON LOAD */
+showRegister();
+</script>
+
+</body>
+</html>
